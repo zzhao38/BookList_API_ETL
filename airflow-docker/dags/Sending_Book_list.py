@@ -36,12 +36,13 @@ default_args = {
 
 
 dag = DAG(
-    dag_id='Best Seller Book list',
+    dag_id='Best_Seller_Book_list',
     default_args=default_args,
     schedule_interval='@daily',
     start_date=days_ago(1),
     tags=['Best Seller Book list'],
 )
+
 API_KEY = 'HJX1K60DOIoWcZHacyntVKwVpKfyTF3f'
 
 
@@ -102,7 +103,7 @@ def extract_data():
             the_file.write(
                 Nonfiction_book_list_df.to_string(header = False, index = False)
             )
-        send_email('zhangtuomingz@gmail.com','books',html_content= 'templates/email.html',files=[os.getcwd() + "/Fiction_book_list.txt",
+        send_email(recipients,'books',html_content= 'templates/email.html',files=[os.getcwd() + "/Fiction_book_list.txt",
         os.getcwd() + "/Nonfiction_book_list.txt"])
 
 #perform PythonOperator
